@@ -1,71 +1,52 @@
-let materias = {
-    desarrolloweb: ["Perez","pedro","pepito","luca","lucia"],
-    javascript: ["Salazar","pedro","juan","pepito"],
-    react: ["Hernandez","pedro","juan","pepito","luca","lucia"],
-    backend: ["Rodriguez","pedro","juan","pepito","luca","lucia"]
+const materias = {
+    desarrolloweb: ["Fede","lucia","maxi","luca","camila"],
+    javascript: ["Ivan","lucia","juan","maxi","luca"],
+    react: ["Franco","lucia","juan","maxi","camila"],
+    backend: ["Julio","lucia","juan","maxi","luca","camila"]
 }
 
-
-const inscribir = (alumno,materia)=>{
-    personas = materias[materia];
-    if (personas.length >= 21){
-        document.write(`lo siento ${alumno}, las clases de ${materia} ya estan llenas<br><br>`);
-    }
-    else{
-        personas.push(alumno);
-        if (materia == "desarrolloweb"){
-            materias = {
-                desarrolloweb: personas,
-                javascript: materias['javascript'],
-                react: materias['react'],
-                backend:materias['backend']
-            }      
-        }
-        else if (materia == "javascript"){
-            materias ={
-                desarrolloweb: materias['desarrolloweb'],
-                javascript: personas,
-                react: materias['react'],
-                backend:materias['backend']
-            }
-
-        }
-        else if (materia == "react"){
-            materias ={
-                desarrolloweb: materias['desarrolloweb'],
-                javascript: materia['javascript'],
-                react: personas,
-                backend:materias['backend']
-            }
-        }
-        else if (materia == "backend"){
-            materias = {
-                desarrolloweb: materias['desarrolloweb'],
-                javascript: materia['javascript'],
-                react: materias['react'],
-                backend: personas
-            }
-        }
-
-        document.write(`¡Felicidades ${alumno}! te has inscrito a ${materia} correctamente.<br><br>`);
-
+const obtenerInformacion = (materia)=>{
+    if (materias[materia] !== undefined){
+        return [materias[materia],materia,materias];
+    } else {
+        return materias;
     }
 }
 
-document.write(materias['desarrolloweb'] + "<br>")
+const mostrarInformacion = (materia)=>{
+    let informacion = obtenerInformacion(materia);
+    if (informacion !== false) {
+        let profesor = informacion[0][0];
+        alumnos = informacion[0];
+        alumnos.shift();
+        document.write(`El profesor de <b>${informacion[1]}</b> es: <b style="color:red">${profesor}</b><br>
+        Los alumnos son: <b style="color:blue">${alumnos}</b><br><br>`);
+    }
+}
 
-inscribir("toto","desarrolloweb");
-inscribir("mia","desarrolloweb");
-inscribir("marcelo","desarrolloweb");
-inscribir("toto","desarrolloweb");
-inscribir("mia","desarrolloweb");
-inscribir("marcelo","desarrolloweb");
-inscribir("toto","desarrolloweb");
-inscribir("mia","desarrolloweb");
-inscribir("marcelo","desarrolloweb");
-inscribir("toto","desarrolloweb");
-inscribir("mia","desarrolloweb");
-inscribir("marcelo","desarrolloweb");
-inscribir("toto","desarrolloweb");
+const cantidadDeClases = (alumno)=>{
+    let informacion = obtenerInformacion();
+    let clasesPresentes = [];
+    let cantidadTotal = 0;
+    for (info in informacion) {
+        if (informacion[info].includes(alumno)) {
+            cantidadTotal++;
+            clasesPresentes.push(" "+ info);
+        }
+    }
+    return `<b style='color:blue'>
+    ${alumno}</b> está en <b>${cantidadTotal} clases: <b style='color:green'>${clasesPresentes}</b>
+    <br><br>`;
 
-document.write("<br>" + materias['desarrolloweb']) 
+}
+
+
+mostrarInformacion("desarrolloweb");
+mostrarInformacion("javascript");
+mostrarInformacion("react");
+mostrarInformacion("backend");
+
+
+document.write(cantidadDeClases("lucia"))
+document.write(cantidadDeClases("luca"))
+document.write(cantidadDeClases("camila"))
