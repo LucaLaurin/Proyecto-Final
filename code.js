@@ -1,52 +1,41 @@
 const materias = {
-    desarrolloweb: ["Fede","lucia","maxi","luca","camila"],
-    javascript: ["Ivan","lucia","juan","maxi","luca"],
-    react: ["Franco","lucia","juan","maxi","camila"],
-    backend: ["Julio","lucia","juan","maxi","luca","camila"]
+	fisica: [90,6,3,"fisica"],
+	matematica: [84,8,2,"matematica"],
+	logica: [92,8,4,"logica"],
+	quimica: [96,8,4,"quimica"],
+	calculo: [91,6,3,"calculo"],
+	programacion: [79,7,4,"programacion"],
+	biologia: [75,9,2,"biologia"],
+	bbdd: [98,9,1,"bbdd"],
+	algebra: [100,10,4,"algebra"]
 }
 
-const obtenerInformacion = (materia)=>{
-    if (materias[materia] !== undefined){
-        return [materias[materia],materia,materias];
-    } else {
-        return materias;
+const aprobo = ()=>{
+    for (materia in materias){
+
+        let asistencias = materias[materia][0];
+		let promedio = materias[materia][1];
+		let trabajos = materias[materia][2]
+
+        console.log(materias[materia][3]);
+
+        if (asistencias >= 90) {
+			console.log("%c   Asistencias en orden","color:green");
+		} else {
+			console.log("%c   Falta de Asistencias","color:red");
+		}
+
+        if (promedio >= 7) {
+			console.log("%c   Promedio en orden","color:green");
+		} else {
+			console.log("%c   Promedio desaprobado","color:red");
+		}
+
+        if (trabajos >= 3) {
+			console.log("%c   Trabajos prácticos en Orden","color:green");
+		} else {
+			console.log("%c   Faltan trabajos prácticos","color:red");
+		}
     }
 }
-
-const mostrarInformacion = (materia)=>{
-    let informacion = obtenerInformacion(materia);
-    if (informacion !== false) {
-        let profesor = informacion[0][0];
-        alumnos = informacion[0];
-        alumnos.shift();
-        document.write(`El profesor de <b>${informacion[1]}</b> es: <b style="color:red">${profesor}</b><br>
-        Los alumnos son: <b style="color:blue">${alumnos}</b><br><br>`);
-    }
-}
-
-const cantidadDeClases = (alumno)=>{
-    let informacion = obtenerInformacion();
-    let clasesPresentes = [];
-    let cantidadTotal = 0;
-    for (info in informacion) {
-        if (informacion[info].includes(alumno)) {
-            cantidadTotal++;
-            clasesPresentes.push(" "+ info);
-        }
-    }
-    return `<b style='color:blue'>
-    ${alumno}</b> está en <b>${cantidadTotal} clases: <b style='color:green'>${clasesPresentes}</b>
-    <br><br>`;
-
-}
-
-
-mostrarInformacion("desarrolloweb");
-mostrarInformacion("javascript");
-mostrarInformacion("react");
-mostrarInformacion("backend");
-
-
-document.write(cantidadDeClases("lucia"))
-document.write(cantidadDeClases("luca"))
-document.write(cantidadDeClases("camila"))
+aprobo()
