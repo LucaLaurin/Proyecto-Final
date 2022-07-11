@@ -1,13 +1,13 @@
 const materias = {
-	fisica: [90,6,3,"fisica"],
-	matematica: [84,8,2,"matematica"],
-	logica: [92,8,4,"logica"],
-	quimica: [96,8,4,"quimica"],
-	calculo: [91,6,3,"calculo"],
+	desarrolloweb: [90,6,3,"desarrolloweb"],
+	javascript: [84,8,2,"javascript"],
+	react: [92,8,4,"react"],
+	backend: [96,8,4,"backend"],
+	diseño: [91,6,3,"diseño"],
 	programacion: [79,7,4,"programacion"],
-	biologia: [75,9,2,"biologia"],
-	bbdd: [98,9,1,"bbdd"],
-	algebra: [100,10,4,"algebra"]
+	sql: [75,9,2,"sql"],
+	uxui: [98,9,1,"ux/ui"],
+	phyton: [100,10,4,"phyton"]
 }
 
 const aprobo = ()=>{
